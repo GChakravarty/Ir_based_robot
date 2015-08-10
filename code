@@ -1,0 +1,51 @@
+const int ain=A0;
+const int aout1=5;
+const int aout2=6;
+const int aout3=9;
+const int aout4=10;
+
+const int aen1=7;
+const int aen2=8;
+
+int sensorvalue=0;
+int outputvalue=0;
+
+void setup() {
+ Serial.begin(9600);
+pinMode(A0,INPUT);
+pinMode(5,OUTPUT);
+pinMode(6,OUTPUT);
+pinMode(9,OUTPUT);
+pinMode(10,OUTPUT);
+digitalWrite(7,HIGH);
+digitalWrite(8,HIGH);
+
+// put your setup code here, to run once:
+
+}
+
+void loop() {
+sensorvalue=analogRead(A0);  
+outputvalue=map(sensorvalue,0,1023,0,255);
+
+if (sensorvalue > 400)
+{// put your main code here, to run repeatedly:
+ analogWrite(5, 255);
+ analogWrite(6,0);
+ analogWrite(9,0);
+ analogWrite(10,255);
+}
+ 
+ else
+{ 
+ analogWrite(5,0);
+ analogWrite(6,0);
+analogWrite(9,0);
+analogWrite(10,0);
+}
+ 
+ Serial.print("value=");
+ Serial.print(sensorvalue);
+ Serial.print("\n");
+ delay(500);
+} 
